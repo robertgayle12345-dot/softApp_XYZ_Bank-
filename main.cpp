@@ -1,11 +1,13 @@
 #include <iostream>
 using namespace std;
 
+//Account Class
 class Account
 {
     private:
         double balance; //PRIVATE DATA FOR MEMBER ACC BALANCE
 
+        //Constructor: initializes balance to 1000.0 or to 0.0 if the initial balance is invalid
     public:
         Account(double initialBalance)
         {
@@ -15,14 +17,19 @@ class Account
             }
             else
             {
-                balance=0.0;
+                balance=0.00;
                 cout<<"[WARNING] Initial balance was invalid (must be at least $1000.00 or more). Balance set to $0.00.\n";
             }}
 
 // Deposit function: adds amount to current balance
         void deposit(double amount)
         {
-            balance += amount;
+            if (amount <= 0)
+            {
+                cout << "INVALID DEPOSIT AMOUNT. PLEASE ENTER A POSITIVE VALUE.\n";
+                return;
+            }
+            balance = balance +  amount;
             cout << "AMOUNT DEPOSITED SUCCESSFULLY $" << amount << "\n";
             cout << "BALANCE: $" << balance << "\n";
         }
@@ -31,7 +38,7 @@ class Account
         {
             if (amount <= balance)
             {
-                balance -= amount;
+                balance = balance - amount;
                 cout << " WITHDRAW SUCCESSFULL $" << amount << "\n";
                 cout << "BALANCE: $" << balance << "\n"; // DISPLAY ACC BALANCE
             }
@@ -53,7 +60,7 @@ void displayMenu()
     cout << "           XYZ BANK ATM SYSTEM              \n";
     cout << "============================================\n";
     cout << " 1. ACCOUNT BALANCE\n";
-    cout << " 2. ACCOUNT DEPOSITE\n";
+    cout << " 2. ACCOUNT DEPOSIT\n";
     cout << " 3. ACCOUNT WITHDRAW\n";
     cout << " 4. EXIT\n";
     cout << "============================================\n";
@@ -75,7 +82,7 @@ int main()
     double amount;
 
     // 3. Interactive ATM Menu Loop
-    while (true)
+    while (true) 
     {
         displayMenu();
 
