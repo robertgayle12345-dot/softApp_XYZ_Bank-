@@ -67,6 +67,13 @@ void displayMenu()
     cout << "SELECT YOUR TRANSACTION TYPE (1-4): ";
 }
 
+void pauseAndContinue()
+{
+    cout << "\nPLEASE CLICK ENTER TO RETURN TO MAIN MENUE...";
+    cin.ignore(10000, '\n');
+    cin.get();
+}
+
 int main()
 {
         // 1. Display Welcome Banner First
@@ -78,11 +85,14 @@ int main()
     Account myAccount(2000.0); // Create an account with an initial balance of 1000.0
     cout << "[System] YOUR ACCOUNT BALANCE IS: $" << myAccount.getBalance() << "\n";
 
+    cout << "\n       PRESS ENTER TO CONTINUE...";
+    cin.get();
+
     int choice;
     double amount;
 
     // 3. Interactive ATM Menu Loop
-    while (true) 
+    while (true)
     {
         displayMenu();
 
@@ -99,18 +109,21 @@ int main()
         {
             case 1:
                 cout << "\nACCONT BALANCE: $" << myAccount.getBalance() << "\n";
+                pauseAndContinue();
                 break;
 
             case 2:
                 cout << "ACCONT DEPOSIT: $";
                 cin >> amount;
                 myAccount.deposit(amount);
+                pauseAndContinue();
                 break;
 
             case 3:
                 cout << "ACCONT WIDTHRAW: $";
                 cin >> amount;
                 myAccount.withdraw(amount);
+                pauseAndContinue();
                 break;
 
             case 4:
